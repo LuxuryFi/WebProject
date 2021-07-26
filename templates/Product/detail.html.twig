@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Create
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style type="text/css">
+		.important {
+			color: #336699;
+		}
+	</style>
+
+{% endblock %}
+{% block body %}
+
+<a href="/product/update/{{product.getId()}}"> <i class="fa fa-pencil"></i> </a>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Product Name</td>
+        <td> {{product.getProductName}} </td>
+    </tr>
+    <tr>
+        <td>Product Description</td>
+        <td>{{product.getProductDescription}}</td>
+    </tr>
+    <tr>
+        <td>Product Summary</td>
+        <td>
+           {{product.getProductSummary}}
+        </td>
+    </tr>
+    <tr>
+        <td>Product Price</td>
+        <td>{{product.getProductPrice}}</td>
+    </tr>
+    <tr>
+        <td>Product Amount</td>
+        <td>{{product.getProductAmount}}</td>
+    </tr>
+</table>
+    <a href="/product/update/{{ product.getId()}}" class="btn btn-primary">Update Product</a>
+    <a href="/product/index" class="btn btn-secondary">Back To Home</a>
+{% endblock %}

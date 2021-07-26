@@ -11,8 +11,28 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+
+
+    an_controller:
+        class: 'App\Controller\AnController'
+        tags: ['controller.service_arguments', 'controller.service_subscriber']
+        calls:
+            - [setContainer, ['@Psr\Container\ContainerInterface']]
+
+    product_controller:
+        class: 'App\Controller\ProductController'
+        tags: ['controller.service_arguments', 'controller.service_subscriber']
+        calls:
+            - [setContainer, ['@Psr\Container\ContainerInterface']]
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
+
+
+
+
+
+
     App\:
         resource: '../src/'
         exclude:

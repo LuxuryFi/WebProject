@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Index
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style type="text/css">
+		.important {
+			color: #336699;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<h2 class="alert alert-success"> <center>Product List</center></h2>
+	<a href="/product/create" class="btn btn-primary">Add Product</a> <br><br>
+	<table class="table table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Summary</th>
+			<th>Price</th>
+			<th>Amount</th>
+			<th>Status</th>
+			<th>Option</th>
+		</tr>
+		{% for product in products %}
+			<tr>
+				<td>{{ product.getProductName() }}</td>
+				<td>{{ product.getProductDescription() }}</td>
+				<td>{{ product.getProductSummary() }}</td>
+				<td>{{ product.getProductPrice() }}</td>
+				<td>{{ product.getProductAmount() }}</td>
+				<td>
+					{% if product.getProductStatus() == 0 %}
+						Disable
+					{% else %}
+						Active
+					{% endif %}
+				<td>
+					<a href="/product/update/{{product.getId()}}"> <i class="fa fa-pen"></i> </a>
+					<a href="/product/detail/{{product.getId()}}"> <i class="fa fa-eye"></i> </a>
+					<a href="/product/delete/{{product.getId()}}" onclick="Confirm('You sua')"> <i class="fa fa-trash" ></i> </a>
+				</td>
+			</tr>
+        	{% endfor %}
+		</table>
+{% endblock %}
