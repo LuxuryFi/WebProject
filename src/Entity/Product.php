@@ -47,21 +47,29 @@ class Product
      */
     private $product_status;
 
-    /**
-    * @var \DateTime
-    * @ORM\Column(type="datetime")
-    */
-    private $created_at;
-
-    /**
-    * @var \DateTime
-    * @ORM\Column(type="datetime")
-    */
-    private $updated_at;
 
     public function __construct()
     {
-      $this->created_at = new \DateTime("now");
+
+    }
+
+
+
+      /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
+     */
+    private $category;
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
 
@@ -142,20 +150,4 @@ class Product
 
         return $this;
     }
-
-    public function getProductCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    public function getProductUpdateddAt()
-    {
-        return $this->updated_at;
-    }
-
-    public function setProductUpdateddAt()
-    {
-        $this->created_at = new \DateTime();
-    }
-
 }

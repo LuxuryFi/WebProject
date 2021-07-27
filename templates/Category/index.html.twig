@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Index
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style type="text/css">
+		.important {
+			color: #336699;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<h2 class="alert alert-primary"> <center>Category List</center></h2>
+	<a href="/category/create" class="btn btn-primary">Add Category</a> <br><br>
+	<table class="table table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Option</th>
+		</tr>
+		{% for category in categories %}
+			<tr>
+				<td>{{ category.getCategoryName() }}</td>
+				<td>{{ category.getCategoryDescription() }}</td>
+				<td>
+					<a href="/category/update/{{category.getId()}}"> <i class="fa fa-pen"></i> </a>
+					<a href="/category/detail/{{category.getId()}}"> <i class="fa fa-eye"></i> </a>
+					<a href="/category/delete/{{category.getId()}}" onclick="Confirm('You sua')"> <i class="fa fa-trash" ></i> </a>
+				</td>
+			</tr>
+        	{% endfor %}
+		</table>
+{% endblock %}

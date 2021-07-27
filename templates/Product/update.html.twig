@@ -10,9 +10,9 @@
 			color: #336699;
 		}
 	</style>
-
 {% endblock %}
 {% block body %}
+	<h2 class="alert alert-primary"> <center>Product Update</center></h2>
 	<form method="POST" action="{{ path('product_updateOne', {'id': product.getId()} ) }}">
 		<div class="mb-3">
 			<label for="">Product Name</label>

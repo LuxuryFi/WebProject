@@ -1,0 +1,48 @@
+.header {
+    height: 100px;
+    margin: 0px 0px;
+    background-color: #3C8DBC;
+}
+
+.main {
+    color: #ffffff;
+    display: flex;
+}
+
+
+
+.logo h2 {
+    padding: 20px;
+    color: #fff;
+}
+
+.navbar {
+    flex: 1;
+    background-color: #222D32;
+}
+
+.nav-item {
+    display: block;
+    width: 100%;
+    padding: 20px;
+}
+
+.content {
+    color: #ffffff;
+    flex: 8;
+}
+
+.c-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.content table {
+    font-size: 1vmax;
+}
+
+
+
+/* .content table th,th,td {
+    color: #ffffff;
+} */

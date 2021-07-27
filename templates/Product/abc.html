@@ -1,46 +1,28 @@
-{% extends "base.html.twig" %}
+<div class="container">
+    <div class="header">
+        <div class="logo">
+            <img src="{{ asset('images/logo.jfif') }}" alt="Symfony!"/>
+        </div>
+        <div class="">
+
+        </div>
+    </div>
+    <div class="main">
+        <div class="navbar">
+            <div class="nav-item">
+                <i></i> <a href="/product/index"> Product </a>
+            </div>
+            <div class="nav-item">
+                <i></i> <a href="/category/index"> Category </a>
+            </div>
+        </div>
+        <div class="content">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
 
 
-{% block title %}Create
-{% endblock %}
-{% block stylesheets %}
-	{{ parent() }}
-	<style type="text/css">
-		.important {
-			color: #336699;
-		}
-	</style>
-
-{% endblock %}
-{% block body %}
-
-
-
-<a href="/product/update/{{product.getId()}}"> <i class="fa fa-pencil"></i> </a>
-
-
-<table class="table table-bordered">
-    <tr>
-        <td>Product Name</td>
-        <td> {{product.getProductName}} </td>
-    </tr>
-    <tr>
-        <td>Product Description</td>
-        <td>{{product.getProductDescription}}</td>
-    </tr>
-    <tr>
-        <td>Product Summary</td>
-        <td>
-            <textarea name="" id="" cols="30" rows="10">{{product.getProductSummary}}</textarea>
-        </td>
-    </tr>
-    <tr>
-        <td>Product Price</td>
-        <td>{{product.getProductPrice}}</td>
-    </tr>
-    <tr>
-        <td>Product Amount</td>
-        <td>{{product.getProductAmount}}</td>
-    </tr>
-</table>
-{% endblock %}
+</div>

@@ -13,33 +13,33 @@
 
 {% endblock %}
 {% block body %}
-	<form method="POST" action="{{ path('product_createOne') }}">
+		<h2 class="alert alert-primary"> <center>Product Create</center></h2>
+		<form method="POST" action="{{ path('product_createOne') }}">
 		<div class="mb-3">
 			<label for="">Product Name</label>
-			<input type="text" name="product_name" class="form-control">
+			<input type="text" name="product_name" class="form-control" value="">
 		</div>
 		<div class="mb-3">
 			<label for="">Product Description</label>
-			<input type="text" name="product_description" class="form-control">
+			<input type="text" name="product_description" class="form-control" value="" >
 		</div>
 		<div class="mb-3">
 			<label for="">Product Summary</label>
-
 			<textarea name="product_summary" class="form-control" id="" cols="30" rows="10"></textarea>
 		</div>
 		<div class="mb-3">
 			<label for="">Product Price</label>
-			<input type="text" name="product_price" class="form-control">
+			<input type="text" name="product_price" class="form-control" value="">
 		</div>
 		<div class="mb-3">
 			<label for="">Product Amount</label>
-			<input type="text" name="product_amount" class="form-control">
+			<input type="text" name="product_amount" class="form-control" value="">
 		</div>
 		<div class="mb-3">
 			<label for="">Product Status</label>
 			<select name="product_status" class="form-control" id="">
-				<option value="1">Active</option>
-				<option value="0">Disacble</option>
+                <option value="">Active</option>
+                <option value="">Disacble</option>
 			</select>
 		</div>
 		<div class="mb-3">
@@ -47,5 +47,5 @@
 			<input type="reset" value="Clear" class="btn btn-danger">
 			<a href="/product/index" class="btn btn-secondary">Back To Home</a>
 		</div>
-	</form>
+
 {% endblock %}

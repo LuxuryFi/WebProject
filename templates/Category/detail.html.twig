@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Create
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style type="text/css">
+		.important {
+			color: #336699;
+		}
+	</style>
+
+{% endblock %}
+{% block body %}
+
+<h2 class="alert alert-primary"> <center>Category Detail</center></h2>
+
+<a href="/category/update/{{category.getId()}}"> <i class="fa fa-pencil"></i> </a>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Category Name</td>
+        <td> {{category.getCategoryName}} </td>
+    </tr>
+    <tr>
+        <td>Category Description</td>
+        <td>{{category.getCategoryDescription}}</td>
+    </tr>
+</table>
+    <a href="/category/update/{{ category.getId()}}" class="btn btn-primary">Update category</a>
+    <a href="/category/index" class="btn btn-secondary">Back To Home</a>
+{% endblock %}

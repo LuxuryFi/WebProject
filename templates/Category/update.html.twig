@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Create
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style type="text/css">
+		.important {
+			color: #336699;
+		}
+	</style>
+
+{% endblock %}
+{% block body %}
+	<form method="POST" action="{{ path('category_updateOne', {'id': category.getId()} ) }}">
+		<div class="mb-3">
+			<label for="">Category Name</label>
+			<input type="text" name="category_name" class="form-control" value="{{ category.getCategoryName() }}">
+		</div>
+		<div class="mb-3">
+			<label for="">Category Description</label>
+			<input type="text" name="category_description" class="form-control" value="{{ category.getCategoryDescription() }}" >
+		</div>
+		<div class="mb-3">
+			<input type="submit" value="Submit" class="btn btn-primary">
+			<input type="reset" value="Clear" class="btn btn-danger">
+            <a href="/category/index" class="btn btn-secondary">Back To Home</a>
+		</div>
+	</form>
+{% endblock %}

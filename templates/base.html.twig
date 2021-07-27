@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-        	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+                Welcome!
+			{% endblock %}
+		</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		{# Run `composer require symfony/webpack-encore-bundle`
+				           and uncomment the following Encore helpers to start using Symfony UX #}
+		{% block stylesheets %}
+			{#{{ encore_entry_link_tags('app') }}#}
+		{% endblock %}
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+		<link href="{{ asset('css/admin.css') }}" rel="stylesheet"/>
+
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-    <div>
+			{#{{ encore_entry_script_tags('app') }}#}
+		{% endblock %}
+	</head>
+	<body>
+		<div></div>
+		<div class="">
+			<div class="header">
+				<div class="logo">
+                    <h2> Perry's Shop </h2>
+                </div>
+				<div class="">
 
-    </div>
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
-
-    </body>
-</html>
+                </div>
+			</div>
+			<div class="main">
+				<div class="navbar">
+					<div class="nav-item">
+						<i class="fa fa-cat"></i>
+						<a href="/product/index">
+							Product
+						</a>
+					</div>
+					<div class="nav-item">
+						<i class="fa fa-tag"></i>
+						<a href="/category/index">
+							Category
+						</a>
+					</div>
+				</div>
+				<div class="content">
+                    <div class="c-container"
+                        {% block body %}{% endblock %}
+                     </div>
+					</div>
+				</div>
+				<div class="footer"></div>
+			</div>
+		</body>
+	</html>
