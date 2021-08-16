@@ -1,0 +1,54 @@
+.cart-container {
+    width: 100%;
+}
+
+.cart-list {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.table th {
+    background-color: #DE8EBE;
+    padding: 10px 20px;
+    color: #ffffff;
+}
+
+.table img {
+
+}
+
+.table td {
+    text-align: center;
+    font-size: 0.8vmax;
+    height: fit-content;
+    padding: 10px 0px;
+}
+
+.table tr {
+    padding: 20px 0px;
+}
+
+.table img {
+    width: 40%;
+}
+
+.tfoot td {
+    background-color:#DE8EBE;
+    color: #ffffff;
+    text-align:center;
+    padding: 10px 20px;
+}
+
+.table td .cart {
+    font-size:1vmax; border: 1px solid #fff;
+}
+
+.table td .cart:hover {
+    border: 1px solid #DE8EBE;
+    background-color: #fff;
+    color: #DE8EBE;
+}

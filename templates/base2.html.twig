@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Coiny&display=swap" rel="stylesheet">
+
+		<title>Document</title>
+		<script src="https://use.fontawesome.com/000c32fde0.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<link href="{{ asset('css/user.css') }}" rel="stylesheet"/>
+		{% block stylesheets %}
+			{#{{ encore_entry_link_tags('app') }}#}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<div class="header-start">
+					<div class="logo">
+						<img src="{{ asset('images/logo.png')}}" alt="">
+					</div>
+				</div>
+				<div class="header-main">
+					<div class="header-main__nav">
+						<ul class="nav-list">
+							<li class="nav-item active">
+								<a href="/homepage">TRANG CHỦ</a>
+							</li>
+							<li class="nav-item">
+								<a href="">HÒA AN</a>
+							</li>
+							<li class="nav-item">
+								<a href="">ACCESSORIES</a>
+							</li>
+							<li class="nav-item">
+								<a href="">SERVICE</a>
+							</li>
+							<li class="nav-item">
+								<a href="/homepage/wishlist">YÊU THÍCH</a>
+							</li>
+							<li class="nav-item">
+								<a href="/logout">LOGOUT</a>
+							</li>
+							<li class="cart">
+                            <div class="wrapper">
+                                <div class="cart-logo">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                                <a href="/homepage/cart" class="cart-info">
+                                    Giỏ hàng <br>
+                                    0 - sản phẩm
+                                </a>
+                            </div>
+                        </li>
+						</ul>
+					</div>
+					<div class="header-main__banner">
+						<img src="{{ asset('images/banner.png')}}" alt="">
+					</div>
+					<div class="header-main__search">
+						<form action="">
+							<input
+							type="text" class="form__search" placeholder="Tìm kiếm thú cưng..."/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="main">
+				<div class="main-start">
+					<div class="bread-crumb">
+						Trang chủ | Danh mục sản phẩm
+					</div>
+				</div>
+				<div class="main-center">
+                {% block body %}{% endblock %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="container">
+            <div class="footer">
+                <div class="footer-start">
+                    <div class="footer-item">
+                        <div class="footer-title">
+                            LIÊN LẠC
+                        </div>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="footer-item">
+                        <div class="footer-title">
+                            INSTAGRAM
+                        </div>
+                    </div>
+                    <div class="footer-item">
+                        <div class="footer-title">
+                            FACEBOOK
+                        </div>
+                    </div>
+                    <div class="footer-item">
+                        <div class="footer-title">
+                            YOUTUBE
+                        </div>
+                    </div>
+                </div>
+                <div class="footer center"></div>
+                <div class="footer-end"></div>
+            </div>
+        </div>
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/user.js') }}"></script>
+		<script src="{{ asset('js/homepage.js') }}"></script>
+
+        {% endblock %}
+    </body>
+</html>

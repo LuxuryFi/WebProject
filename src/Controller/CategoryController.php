@@ -2,35 +2,45 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Form\CategoryType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 // ...
 $request = Request::createFromGlobals();
 
+/**
+ *  @IsGranted("ROLE_USER")
+ */
 class CategoryController extends AbstractController
 {
-    #[Route('/category/create', name: 'category_createOne',  methods: ['POST', 'HEAD'])]
+    #[Route('/category/create', name: 'category_create')]
     public function createOne(Request $request): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
         $category = new Category();
-        $category->setCategoryName($request->request->get('category_name'));
-        $category->setCategoryDescription(($request->request->get('category_description')));
+        $form = $this->createForm(CategoryType::class,$category);
+        $form->handleRequest($request);
 
-        $entityManager->persist($category);
-        $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($category);
+            $manager->flush();
 
-        return $this->redirect('/category/index', 301);
+            $this->addFlash("Success","Create category succeed !");
+            return $this->redirectToRoute("category_index");
+        }
+        return $this->render(
+            'category/create.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
     }
 
-    #[Route('/category/create', name: 'category_create', methods: ['GET'] )]
-    public function create() {
-        return $this->render('category/create.html.twig', []);
-    }
 
     #[Route('/category/index', name: 'category_index',  methods: ['GET', 'HEAD'])]
     public function index(): Response
@@ -52,28 +62,28 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/category/update/{id}', name: 'category_update',  methods: ['GET', 'HEAD'])]
-    public function update(string $id): Response
+    #[Route('/category/update/{id}', name: 'category_update')]
+    public function update(Request $request, string $id): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $category = $entityManager->getRepository(category::class)->find($id);
-        return $this->render('category/update.html.twig', [
-            'category' => $category,
-        ]);
-    }
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+        $form = $this->createForm(CategoryType::class,$category);
+        $form->handleRequest($request);
 
-    #[Route('/category/update/{id}', name: 'category_updateOne',  methods: ['POST'])]
-    public function updateOne(Request $request, string $id): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id = (int)$id;
-        $category = $entityManager->getRepository(category::class)->find($id);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($category);
+            $manager->flush();
 
-        $category->setCategoryName($request->request->get('category_name'));
-        $category->setCategoryDescription(($request->request->get('category_description')));
-        $entityManager->flush();
+            $this->addFlash("Success","Create category succeed !");
+            return $this->redirectToRoute("category_index");
+        }
 
-        return $this->redirect('/category/index', 301);
+        return $this->render(
+            'category/update.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
     }
 
     #[Route('/category/delete/{id}', name: 'category_delete', methods: ['GET'])]

@@ -1,0 +1,57 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello HomepageController!
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/cart.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="title">
+                    YOUR CART :3
+                </div>
+                <div class="cart-container">
+                    <div class="cart-list">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>No</th>
+                                <th>Product Name</th>
+                                <th>Product Image</th>
+                                <th>Amount </th>
+                                <th>Price</th>
+                                <th>Option</th>
+                            </tr>
+                            {% for product in products %}
+                                <tr>
+                                    <td> {{ product.getProduct.getId() }}</td>
+                                    <td>{{ product.getProduct.getProductName() }}</td>
+                                    <td>
+                                        <img src="{{ asset('images/products/' ~ product.getProduct.getAvatar())}}" alt="">
+                                    </td>
+                                    <td>  {{ product.getAmount() }}</td>
+                                    <td> {{ product.getProduct.getProductPrice() }}</td>
+                                    <td>
+                                        <i style="color:#DE8EBE" class="fa fa-trash"></i>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr class="tfoot">
+                                <td colspan="5">Total</td>
+                                <td colspan="1">hehe</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <button style="" class="cart">Order</button>
+                                    <button  class="cart">Clear</button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="cart-footer">
+
+                    </div>
+                </div>
+
+{% endblock %}

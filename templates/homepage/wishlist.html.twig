@@ -1,0 +1,39 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello HomepageController!{% endblock %}
+
+{% block body %}
+<div class="title">
+                    SHOP BÁN CHÓ MÈO CẢNH
+                </div>
+                <div class="item-container">
+                <input type="hidden" id="user_id" value="{{app.user.id}}">
+                {% for product in products %}
+                    <div class="item-wrap">
+                        <div class="item-image">
+                            <div class="hidden"></div>
+                            <img src="{{ asset('images/products/' ~ product.getProduct().getAvatar())}}" alt="">
+                            <div class="item-option">
+                                <span class="item-option__button"><i class="fa fa-heart"></i></span>
+                                <span class="item-option__button"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                        <div class="item-info">
+                            <div class="item-id">
+                                {{ product.getProduct.getId() }}
+                            </div>
+                            <div class="item-title">
+                                {{ product.getProduct.getProductName() }}
+                            </div>
+                            <div class="item-price">
+                                {{ product.getProduct.getProductPrice() }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="title">
+                    SHOP BÁN CHÓ MÈO CẢNH
+                </div>
+
+{% endblock %}

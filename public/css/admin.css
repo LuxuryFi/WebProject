@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .header {
     height: 100px;
     margin: 0px 0px;
@@ -7,9 +11,9 @@
 .main {
     color: #ffffff;
     display: flex;
+    height: 100%;
+    width: 100%;
 }
-
-
 
 .logo h2 {
     padding: 20px;
@@ -27,9 +31,16 @@
     padding: 20px;
 }
 
+.nav-item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1vmax;
+}
+
+
 .content {
-    color: #ffffff;
-    flex: 8;
+    color: #000;
+    flex: 9;
 }
 
 .c-container {
@@ -40,6 +51,31 @@
 .content table {
     font-size: 1vmax;
 }
+
+
+@media only screen and (max-width: 1200px) {
+    .content {
+        flex: 10;
+    }
+
+    .header {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .content {
+        flex: 12;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .content {
+        flex: 14;
+    }
+}
+
+
 
 
 

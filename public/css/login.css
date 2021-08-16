@@ -1,0 +1,102 @@
+html,
+body {
+    height: 100%;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    background: url('../images/login.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+}
+
+.login-container {
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    background: rgb(255,255,255,0.7);
+    right: 15%;
+}
+
+.login-form {
+    position: absolute;
+    width: 80%;
+    height: 50%;
+    left: 10%;
+    top: 10%;
+}
+
+.header-form {
+    text-align: center;
+    border-bottom: solid 5px #FF7F50;
+    color: #FF7F50;
+    font-size: 1vmax;
+}
+
+.main-form {
+    width: 100%;
+    margin: 5% 0px 3% 0px;
+    display: block;
+}
+
+.main-form input[type="text"], input[type="password"], textarea {
+    background-color : #fff;
+    width: 100%;
+    font-size: 1.0vmax;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+    border: 1px solid #fff;
+    color: #7c7c7c
+}
+
+
+.main-form #submit {
+    background-color : #FF7F50;
+    width: 100%;
+    font-size: 1.0vmax;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    margin: 7% 0px 0px 0px;
+    color: #fff;
+    opacity: 1;
+    border: 1px solid #fff;
+}
+
+.footer-form {
+    display: flex;
+    width: 100%;
+    margin: 5% 0px;
+    justify-content: space-between;
+}
+
+.footer-form a {
+    width: 100%;
+    font-size: 1.0vmax;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    color: #FF7F50;
+    font-weight: 900;
+    font-size: 1vmax;
+    text-align: center;
+    text-decoration: none;
+}
+
+.footer-form a:nth-child(1) {
+
+}
+
+
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,18 +49,48 @@ class Product
      */
     private $product_status;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Cart", mappedBy="product")
+     */
+    private $carts;
 
     public function __construct()
     {
-
+        $this->user_products = new ArrayCollection();
+        $this->cart = new ArrayCollection();
     }
 
+    /**
+     * @return Collection|Cart[]
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getUserProducts(): Collection
+    {
+        return $this->user_products;
+    }
 
 
       /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserProduct", mappedBy="product")
+     */
+    private $user_products;
 
     public function getCategory(): ?Category
     {
@@ -71,8 +103,6 @@ class Product
 
         return $this;
     }
-
-
 
     public function getId(): ?int
     {
@@ -87,7 +117,6 @@ class Product
     public function setProductName(string $product_name): self
     {
         $this->product_name = $product_name;
-
         return $this;
     }
 
@@ -99,7 +128,6 @@ class Product
     public function setProductDescription(string $product_description): self
     {
         $this->product_description = $product_description;
-
         return $this;
     }
 
@@ -111,7 +139,6 @@ class Product
     public function setProductSummary(string $product_summary): self
     {
         $this->product_summary = $product_summary;
-
         return $this;
     }
 
@@ -123,7 +150,6 @@ class Product
     public function setProductPrice(float $product_price): self
     {
         $this->product_price = $product_price;
-
         return $this;
     }
 
@@ -135,7 +161,6 @@ class Product
     public function setProductAmount(int $product_amount): self
     {
         $this->product_amount = $product_amount;
-
         return $this;
     }
 
@@ -148,6 +173,19 @@ class Product
     {
         $this->product_status = $product_status;
 
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar)
+    {
+        if ($avatar != null) {
+            $this->avatar = $avatar;
+        }
         return $this;
     }
 }

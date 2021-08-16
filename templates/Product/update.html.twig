@@ -10,45 +10,45 @@
 			color: #336699;
 		}
 	</style>
+
 {% endblock %}
 {% block body %}
-	<h2 class="alert alert-primary"> <center>Product Update</center></h2>
-	<form method="POST" action="{{ path('product_updateOne', {'id': product.getId()} ) }}">
-		<div class="mb-3">
-			<label for="">Product Name</label>
-			<input type="text" name="product_name" class="form-control" value="{{ product.getProductName() }}">
-		</div>
-		<div class="mb-3">
-			<label for="">Product Description</label>
-			<input type="text" name="product_description" class="form-control" value="{{ product.getProductDescription() }}" >
-		</div>
-		<div class="mb-3">
-			<label for="">Product Summary</label>
-			<textarea name="product_summary" class="form-control" id="" cols="30" rows="10">{{product.getProductSummary()}}
-            </textarea>
-		</div>
-		<div class="mb-3">
-			<label for="">Product Price</label>
-			<input type="text" name="product_price" class="form-control" value="{{ product.getProductPrice() }}">
-		</div>
-		<div class="mb-3">
-			<label for="">Product Amount</label>
-			<input type="text" name="product_amount" class="form-control" value="{{ product.getProductAmount() }}">
-		</div>
-		<div class="mb-3">
-			<label for="">Product Status</label>
-			<select name="product_status" class="form-control" id="">
-            {% if product.getProductStatus()  == 1 %}
-                <option value="" checked>Active</option>
-            {% else %}
-                <option value="" checked>Disacble</option>
-            {% endif %}
-			</select>
-		</div>
-		<div class="mb-3">
-			<input type="submit" value="Submit" class="btn btn-primary">
-			<input type="reset" value="Clear" class="btn btn-danger">
-            <a href="/product/index" class="btn btn-secondary">Back To Home</a>
-		</div>
-	</form>
+		  <div class="container-fluid mt-3">
+      <h2 class="text-center mt-5 alert alert-primary">UPDATE PRODUCT</h2>
+      <div class="col-md-6"></div>
+          {{ form_start (form) }}
+              <div class="form-group">
+                  {{ form_label (form.product_name) }}
+                  {{ form_widget (form.product_name, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_label (form.product_description) }}
+                  {{ form_widget (form.product_description, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_label (form.product_summary) }}
+                  {{ form_widget (form.product_summary, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+               <div class="form-group">
+                  {{ form_label (form.product_price) }}
+                  {{ form_widget (form.product_price, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+			     <div class="form-group">
+                  {{ form_label (form.product_amount) }}
+                  {{ form_widget (form.product_amount, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+			      <div class="form-group">
+                  {{ form_label (form.product_status) }}
+                  {{ form_widget (form.product_status, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+			    <div class="form-group">
+                  {{ form_label (form.category) }}
+                  {{ form_widget (form.category, {'attr': {'class' : 'form-control'}}) }}
+              </div>
+              <div class="form-group text-center mt-3">
+                  <button class="btn btn-primary btn-lg">CREATE</button>
+              </div>
+          {{ form_end (form)}}
+  </div>
+
 {% endblock %}

@@ -2,47 +2,62 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use function PHPUnit\Framework\throwException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 // ...
-$request = Request::createFromGlobals();
 
+/**
+ *  @IsGranted("ROLE_ADMIN")
+ */
 class ProductController extends AbstractController
 {
-    #[Route('/product/create', name: 'product_createOne',  methods: ['POST', 'HEAD'])]
-    public function createOne(Request $request): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
+    #[Route('/product/create', name: 'product_create')]
+    public function create(Request $request) {
         $product = new Product();
+        $form = $this->createForm(ProductType::class,$product);
+        $form->handleRequest($request);
 
-        $product_price = (float)($request->request->get('product_price'));
-        $product_amount = (int)($request->request->get('product_amount'));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $avatar = $product->getAvatar();
 
-        $product->setProductName($request->request->get('product_name'));
-        $product->setProductPrice($product_price);
-        $product->setProductDescription(($request->request->get('product_description')));
-        $product->setProductSummary(($request->request->get('product_summary')));
-        $product->setProductAmount($product_amount);
-        $product->setProductStatus(($request->request->get('product_status')));
+            $fileName = md5(uniqid());
+            $fileExtension = $avatar->getExtension();
 
-        $entityManager->persist($product);
+            echo $avatar;
+            $imageName = $fileName . '.' . $fileExtension;
 
-        $entityManager->flush();
+            try {
+                $avatar->move(
+                    $this->getParameter('product_image'), $imageName
+                );
+            } catch (FileException $e) {
+                throwException($e);
+            }
 
-        return $this->redirect('/product/index', 301);
-    }
+            //set imageName to database
+            $product->setAvatar($imageName);
 
-    #[Route('/product/create', name: 'product_create', methods: ['GET'] )]
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($product);
+            $manager->flush();
 
-    public function create() {
-        return $this->render('Product/create.html.twig', [
+            $this->addFlash("Success","Create product succeed !");
+            return $this->redirectToRoute("product_index");
+        }
 
-        ]);
+        return $this->render(
+            'product/create.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
     }
 
     #[Route('/product/index', name: 'product_index',  methods: ['GET', 'HEAD'])]
@@ -65,35 +80,28 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/product/update/{id}', name: 'product_update',  methods: ['GET', 'HEAD'])]
-    public function update(string $id): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $product = $entityManager->getRepository(Product::class)->find($id);
-        return $this->render('Product/update.html.twig', [
-            'product' => $product,
-        ]);
-    }
-
-    #[Route('/product/update/{id}', name: 'product_updateOne',  methods: ['POST'])]
+    #[Route('/product/update/{id}', name: 'product_updateOne')]
     public function updateOne(Request $request, string $id): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $id = (int)$id;
-        $product = $entityManager->getRepository(Product::class)->find($id);
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $form = $this->createForm(ProductType::class,$product);
+        $form->handleRequest($request);
 
-        $product_price = (float)($request->request->get('product_price'));
-        $product_amount = (int)($request->request->get('product_amount'));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($product);
+            $manager->flush();
 
-        $product->setProductName($request->request->get('product_name'));
-        $product->setProductPrice($product_price);
-        $product->setProductDescription(($request->request->get('product_description')));
-        $product->setProductSummary(($request->request->get('product_summary')));
-        $product->setProductAmount($product_amount);
-        $product->setProductStatus(($request->request->get('product_status')));
-        $entityManager->flush();
+            $this->addFlash("Success","Create product succeed !");
+            return $this->redirectToRoute("product_index");
+        }
 
-        return $this->redirect('/product/index', 301);
+        return $this->render(
+            'product/update.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
     }
 
     #[Route('/product/delete/{id}', name: 'product_delete', methods: ['GET'])]
