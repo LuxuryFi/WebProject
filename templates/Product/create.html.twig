@@ -4,56 +4,57 @@
 {% block title %}Create
 {% endblock %}
 {% block stylesheets %}
-	{{ parent() }}
-	<style type="text/css">
-		.important {
-			color: #336699;
-		}
-	</style>
+{{ parent() }}
+<style type="text/css">
+    .important {
+        color: #336699;
+    }
+
+</style>
 
 {% endblock %}
 {% block body %}
-		  <div class="container-fluid mt-3">
+<div class="container-fluid mt-3">
     <h2 class="text-center mt-5 alert alert-primary">CREATE CATEGORY</h2>
 
-      <div class="col-md-6"></div>
-          {{ form_start (form) }}
-              <div class="form-group">
-                  {{ form_label (form.product_name) }}
-                  {{ form_widget (form.product_name, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-              <div class="form-group">
-                  {{ form_label (form.product_description) }}
-                  {{ form_widget (form.product_description, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-              <div class="form-group">
-                  {{ form_label (form.product_summary) }}
-                  {{ form_widget (form.product_summary, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-               <div class="form-group">
-                  {{ form_label (form.product_price) }}
-                  {{ form_widget (form.product_price, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-			     <div class="form-group">
-                  {{ form_label (form.product_amount) }}
-                  {{ form_widget (form.product_amount, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-			      <div class="form-group">
-                  {{ form_label (form.product_status) }}
-                  {{ form_widget (form.product_status, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-			    <div class="form-group">
-                  {{ form_label (form.category) }}
-                  {{ form_widget (form.category, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-                <div class="form-group">
-                  {{ form_label (form.avatar) }}
-                  {{ form_widget (form.avatar, {'attr': {'class' : 'form-control'}}) }}
-              </div>
-              <div class="form-group text-center mt-3">
-                  <button class="btn btn-primary btn-lg">CREATE</button>
-              </div>
-          {{ form_end (form)}}
-  </div>
+    <div class="col-md-6"></div>
+    {{ form_start (form) }}
+    <div class="form-group">
+        {{ form_label (form.product_name) }}
+        {{ form_widget (form.product_name, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.product_description) }}
+        {{ form_widget (form.product_description, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.product_summary) }}
+        {{ form_widget (form.product_summary, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.product_price) }}
+        {{ form_widget (form.product_price, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.product_amount) }}
+        {{ form_widget (form.product_amount, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.product_status) }}
+        {{ form_widget (form.product_status, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.category) }}
+        {{ form_widget (form.category, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label (form.avatar) }}
+        {{ form_widget (form.avatar, {'attr': {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group text-center mt-3">
+        <button class="btn btn-primary btn-lg">CREATE</button>
+    </div>
+    {{ form_end (form)}}
+</div>
 
 {% endblock %}

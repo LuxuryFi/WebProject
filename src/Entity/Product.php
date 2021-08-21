@@ -50,7 +50,7 @@ class Product
     private $product_status;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Cart", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\Cart", mappedBy="product", cascade={"remove"})
      */
     private $carts;
 
@@ -88,7 +88,7 @@ class Product
     private $avatar;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserProduct", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserProduct", mappedBy="product", cascade={"remove"})
      */
     private $user_products;
 

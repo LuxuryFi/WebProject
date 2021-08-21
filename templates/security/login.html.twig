@@ -28,10 +28,8 @@
 								</div>
 							{% endif %}
 
-							<label for="inputUsername">Username</label>
-							<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-							<label for="inputPassword">Password</label>
-							<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+							<input type="text" value="{{ last_username }}" name="username" id="inputUsername" placeholder="Username" class="form-control" autocomplete="username" required autofocus>
+							<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" autocomplete="current-password" required>
 
 							<input
 							type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
